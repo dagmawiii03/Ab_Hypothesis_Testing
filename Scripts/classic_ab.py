@@ -44,4 +44,26 @@ def form_noob(control_group_result, treatment_group_result) -> list:
     treatment_count = get_count(treatment_group_result)
     return [control_count, treatment_count]
 
+def run_ztest(successes: list, nobs: list) -> tuple:
+    z_stat, pval = proportions_ztest(successes, nobs=nobs)
+    return (z_stat, pval)
+
+
+def get_lower_upper_bounds(successes: list, nobs: list, alpha: float = 0.05) -> list:
+    # Getting the lower and upper bounds
+    (lower_con, lower_treat), (upper_con, upper_treat) = proportion_confint(
+        successes, nobs=nobs, alpha=alpha)
+
+    return [(lower_con, lower_treat), (upper_con, upper_treat)]
+
+
+def print_results(ztest_result: tuple, lower_upper_bound_result: list) -> None:
+    # Printing calculated results
+    print(f'z-statistic: {ztest_result[0]:.3f}')
+    print(f'p-value: {ztest_result[1]:.3f}')
+    (lower_con, lower_treat) = lower_upper_bound_result[0]
+    (upper_con, upper_treat) = lower_upper_bound_result[1]
+    print(f'ci 95% for control group: [{lower_con:.2%},{upper_con:.2%}]')
+    print(f'ci 95% for treatment group: [{lower_treat:.2%},{upper_treat:.2%}]')
+
 
