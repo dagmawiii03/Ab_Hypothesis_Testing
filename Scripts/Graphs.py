@@ -20,6 +20,7 @@ class draw:
         plt.ylabel(ylabel, fontsize=16)
         plt.show()
 
+
     def plot_box(df: pd.DataFrame, x_col: str, title: str) -> None:
     
         '''defined function to do box plot with the following structure
@@ -29,6 +30,7 @@ class draw:
         plt.title(title, size=20)
         plt.xticks(rotation=75, fontsize=14)
         plt.show()
+
 
     def plot_scatter(df: pd.DataFrame, x_col: str, y_col: str, title: str, hue: str, style: str) -> None:
      
@@ -41,12 +43,14 @@ class draw:
         plt.yticks(fontsize=14)
         plt.show()
 
+
     def plot_hist(df: pd.DataFrame, column: str, color: str) -> None:
         # plt.figure(figsize=(15, 10))
         # fig, ax = plt.subplots(1, figsize=(12, 7))
         sns.displot(data=df, x=column, color=color, kde=True, height=7, aspect=2)
         plt.title(f'Distribution of user {column}', size=20, fontweight='bold')
         plt.show()
+
 
     def plot_count(df: pd.DataFrame, column: str) -> None:
 
@@ -58,6 +62,7 @@ class draw:
         plt.xlabel('Number of Users')
         plt.show()
 
+
     def plot_heatmap(df: pd.DataFrame, title: str, cbar=False) -> None:
 
         plt.figure(figsize=(12, 7))
@@ -66,6 +71,7 @@ class draw:
         plt.title(title, size=18, fontweight='bold')
         plt.show()
 
+
     def plot_heatmap_from_correlation(correlation, title: str):
 
         #draw heatmap given correlation
@@ -73,6 +79,7 @@ class draw:
         sns.heatmap(correlation)
         plt.title(title, size=18, fontweight='bold')
         plt.show()
+
     
     def plot_box_multi(df: pd.DataFrame, x_col: str, y_col: str, title: str) -> None:
 
@@ -82,6 +89,7 @@ class draw:
         plt.xticks(rotation=75, fontsize=14)
         plt.yticks(fontsize=14)
         plt.show()
+
     
     def simple_plot_scatter(df: pd.DataFrame, x_col: str, y_col: str, title: str) -> None:
         plt.figure(figsize=(12, 7))
@@ -90,6 +98,7 @@ class draw:
         plt.xticks(fontsize=14)
         plt.yticks(fontsize=14)
         plt.show()
+        
     
     def modified_bar_plot(df: pd.DataFrame, x: str, y: str, title: str) -> None:
         plt.figure(figsize=(10, 6))
