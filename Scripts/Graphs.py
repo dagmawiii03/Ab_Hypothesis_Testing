@@ -59,10 +59,19 @@ class draw:
         plt.show()
 
     def plot_heatmap(df: pd.DataFrame, title: str, cbar=False) -> None:
-        
+
         plt.figure(figsize=(12, 7))
         sns.heatmap(df, annot=True, cmap='viridis', vmin=0,
                     vmax=1, fmt='.2f', linewidths=.7, cbar=cbar)
         plt.title(title, size=18, fontweight='bold')
         plt.show()
+
+    def plot_heatmap_from_correlation(correlation, title: str):
+
+        #draw heatmap given correlation
+        plt.figure(figsize=(20, 14))
+        sns.heatmap(correlation)
+        plt.title(title, size=18, fontweight='bold')
+        plt.show()
+    
 
