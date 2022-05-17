@@ -84,9 +84,16 @@ class draw:
         plt.show()
     
     def simple_plot_scatter(df: pd.DataFrame, x_col: str, y_col: str, title: str) -> None:
-    plt.figure(figsize=(12, 7))
-    sns.scatterplot(data=df, x=x_col, y=y_col)
-    plt.title(title, size=20)
-    plt.xticks(fontsize=14)
-    plt.yticks(fontsize=14)
-    plt.show()
+        plt.figure(figsize=(12, 7))
+        sns.scatterplot(data=df, x=x_col, y=y_col)
+        plt.title(title, size=20)
+        plt.xticks(fontsize=14)
+        plt.yticks(fontsize=14)
+        plt.show()
+    
+    def modified_bar_plot(df: pd.DataFrame, x: str, y: str, title: str) -> None:
+        plt.figure(figsize=(10, 6))
+        sns.barplot(x=df[x], y=df[y], ci=False)
+        plt.title(title)
+        plt.xlabel('Experiment Type')
+        plt.ylabel('Response (Proportion)')
