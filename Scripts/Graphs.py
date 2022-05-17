@@ -48,3 +48,12 @@ class draw:
         plt.title(f'Distribution of user {column}', size=20, fontweight='bold')
         plt.show()
 
+    def plot_count(df: pd.DataFrame, column: str) -> None:
+
+        #defined function to do box plot with the following structure
+
+        plt.figure(figsize=(12, 7))
+        sns.countplot(data=df, x=column)
+        plt.title(f'Distribution of User {column}', size=20, fontweight='bold')
+        plt.xlabel('Number of Users')
+        plt.show()
