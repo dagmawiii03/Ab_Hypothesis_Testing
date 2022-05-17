@@ -29,4 +29,19 @@ def get_group_result(df: pd.DataFrame, from_column: str, val_type: str, value_co
 def get_count(group_result: pd.Series) -> int:
     return group_result.count()
 
+def get_sum(group_result: pd.Series) -> int:
+    return group_result.sum()
+
+
+def form_success(control_group_result, treatment_group_result) -> list:
+    control_sum = get_sum(control_group_result)
+    treatment_sum = get_sum(treatment_group_result)
+    return [control_sum, treatment_sum]
+
+
+def form_noob(control_group_result, treatment_group_result) -> list:
+    control_count = get_count(control_group_result)
+    treatment_count = get_count(treatment_group_result)
+    return [control_count, treatment_count]
+
 
