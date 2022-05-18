@@ -4,6 +4,12 @@ from scipy import stats
 from statsmodels.stats.proportion import proportions_ztest, proportion_confint
 
 class classics:
+    def __init__(self, df: pd.DataFrame):
+        """
+            Returns a dataframe Info Object with the passed DataFrame Data
+            Parameters
+        """
+        self.df = df 
 
     def get_conversion_rates(self,df: pd.DataFrame, grouping_column: str, calculation_column: str) -> pd.DataFrame:
 
