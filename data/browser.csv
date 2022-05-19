@@ -1,0 +1,18 @@
+experiment,hour,date,device_make,browser,response
+control,3,2020-07-04,iPhone,Mobile Safari,1
+exposed,3,2020-07-05,iPhone,Mobile Safari,1
+control,9,2020-07-09,iPhone,Mobile Safari,1
+control,5,2020-07-09,iPhone,Mobile Safari,1
+control,11,2020-07-04,iPhone,Chrome Mobile iOS,1
+exposed,8,2020-07-03,iPhone,Mobile Safari,0
+control,15,2020-07-03,iPhone,Mobile Safari,0
+control,15,2020-07-03,iPhone,Mobile Safari UI/WKWebView,0
+exposed,5,2020-07-08,iPhone,Mobile Safari,0
+control,14,2020-07-10,iPhone,Mobile Safari UI/WKWebView,0
+control,12,2020-07-04,iPhone,Mobile Safari,0
+control,1,2020-07-06,iPhone,Mobile Safari,0
+control,15,2020-07-03,iPhone,Mobile Safari,0
+control,15,2020-07-03,iPhone,Mobile Safari,0
+control,11,2020-07-04,iPhone,Mobile Safari,0
+exposed,2,2020-07-09,iPhone,Mobile Safari,0
+control,17,2020-07-07,iPhone,Mobile Safari UI/WKWebView,0
