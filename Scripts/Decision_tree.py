@@ -45,7 +45,7 @@ class DecisionTreesModel:
         self.clf = DecisionTreeClassifier(max_depth=4)
         self.logger = handler("models.log").get_app_logger()
 
-        
+
     def train(self, folds=1):
         
         kf = KFold(n_splits = folds)
@@ -81,5 +81,18 @@ class DecisionTreesModel:
             
         return self.clf, acc_arr, loss_arr
 
+def test(self):
+        
+        y_pred = self.clf.predict(self.X_test)
+        
+        accuracy = self.calculate_score(y_pred, self.y_test)
+        self.__printAccuracy(accuracy, label="Test")
+        
+        report = self.report(y_pred, self.y_test)
+        matrix = self.confusion_matrix(y_pred, self.y_test)
+        
+        loss = loss_function(self.y_test, y_pred)
+        
+        return accuracy, loss,  report, matrix
 
 
