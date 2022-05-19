@@ -23,7 +23,7 @@ class boost:
         self.y_test = y_test
         
         self.clf = GradientBoostingClassifier()
-        self.logger = App_Logger("models.log").get_app_logger()
+        self.logger = handler("models.log").get_app_logger()
 
 
         
