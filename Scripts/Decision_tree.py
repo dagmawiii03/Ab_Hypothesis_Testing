@@ -81,18 +81,54 @@ class DecisionTreesModel:
             
         return self.clf, acc_arr, loss_arr
 
-def test(self):
+    def test(self):
         
-        y_pred = self.clf.predict(self.X_test)
+            y_pred = self.clf.predict(self.X_test)
+            
+            accuracy = self.calculate_score(y_pred, self.y_test)
+            self.__printAccuracy(accuracy, label="Test")
+            
+            report = self.report(y_pred, self.y_test)
+            matrix = self.confusion_matrix(y_pred, self.y_test)
+            
+            loss = loss_function(self.y_test, y_pred)
+            
+            return accuracy, loss,  report, matrix
+    
+    def get_feature_importance(self):
+        importance = self.clf.feature_importances_
+        fi_df = pd.DataFrame()
         
-        accuracy = self.calculate_score(y_pred, self.y_test)
-        self.__printAccuracy(accuracy, label="Test")
+        fi_df['feature'] = self.X_train.columns.to_list()
+        fi_df['feature_importances'] = importance
         
-        report = self.report(y_pred, self.y_test)
-        matrix = self.confusion_matrix(y_pred, self.y_test)
+        return fi_df
+    
+    def __printAccuracy(self, acc, step=1, label=""):
+        self.logger.info(f"Model DecisionTreesModel accuracy: {acc}")
+        print(f"step {step}: {label} Accuracy of DecisionTreesModel is: {acc:.3f}")
+    
+    def __printLoss(self, loss, step=1, label=""):
+        self.logger.info(f"Model DecisionTreesModel accuracy: {loss}")
+        print(f"step {step}: {label} Loss of DecisionTreesModel is: {loss:.3f}")
+    
+    def calculate_score(self, pred, actual):
+        return metrics.accuracy_score(actual, pred)
+    
+    def report(self, pred, actual):
+        print("Test Metrics")
+        print("================")
+        print(metrics.classification_report(pred, actual))
+        return metrics.classification_report(pred, actual)
+    
+    def confusion_matrix(self, pred, actual):
+        ax=sns.heatmap(pd.DataFrame(metrics.confusion_matrix(pred, actual)))
+        plt.title('Confusion matrix')
+        plt.ylabel('Actual')
+        plt.xlabel('Predicted')
+        return metrics.confusion_matrix(pred, actual)
         
-        loss = loss_function(self.y_test, y_pred)
-        
-        return accuracy, loss,  report, matrix
+
+
 
 
