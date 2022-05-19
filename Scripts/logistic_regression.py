@@ -14,7 +14,7 @@ def loss_function(actual, pred):
     rmse = np.sqrt(mean_squared_error(actual, pred))
     return rmse
 
-class Logestic:
+class Logistic:
     
     def __init__(self, X_train, X_test, y_train, y_test, model_name="LR"):
         
