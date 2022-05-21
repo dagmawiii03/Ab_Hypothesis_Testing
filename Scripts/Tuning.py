@@ -1,3 +1,5 @@
+import pickle
+from pyexpat import model
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error
@@ -16,8 +18,6 @@ warnings.filterwarnings('ignore')
 sys.path.append(os.path.abspath(os.path.join('../scripts')))
 
 
-#from helper import Helper
-#helper = Helper()
 
 from Decision_tree import handler
 logger = handler("models.log").get_app_logger()
@@ -25,6 +25,16 @@ logger = handler("models.log").get_app_logger()
 
 
 params = {'criterion': ['gini','entropy'], 'max_depth':[4,5,6,7,8,9,10]}
+
+def read_model(self, file_name):
+    with open(f"../models/{file_name}.pkl", "rb") as f:
+        self.logger.info(f"Model loaded from {file_name}.pkl")
+        return pickle.load(f)
+
+def write_model(self, file_name):
+      with open(f"../models/{file_name}.pkl", "wb") as f:
+          self.logger.info(f"Model dumped to {file_name}.pkl")
+          pickle.dump(model, f)
 
 
 def get_data(tag, path='Data/clean_data.csv', repo='https://github.com/dagmawiii03/Ab_Hypothesis_Testing'):
@@ -77,7 +87,7 @@ def DecisionTree_tune(clf, splitted_data, loss_function, folds=5, params = param
 
 
   if (save and save_path != None):
-      helper.write_model(save_path, best_dt_Model)
+      write_model(save_path, best_dt_Model)
   return best_dt_Model
 
 
@@ -85,8 +95,8 @@ if __name__ =="__main__":
       platform_df = get_data('enc-platform-df-v2')
       browser_df = get_data('enc-browser-df-v2')
 
-      dt_clf_browser = helper.read_model("../models/browser_decision_tree_model")
-      dt_clf_platfrom = helper.read_model("../models/platform_os_decision_tree_model")
+      dt_clf_browser = read_model("../models/browser_decision_tree_model")
+      dt_clf_platfrom = read_model("../models/platform_os_decision_tree_model")
 
       test_size = 0.1
       feature_browser_cols = ["experiment", "hour", "date", 'device_make', 'browser']
